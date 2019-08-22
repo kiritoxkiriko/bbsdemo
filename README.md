@@ -27,6 +27,8 @@ mysql用了这里 https://github.com/abel533/Mapper 的一个通用mapper，省�
 
    ```shell
    git clone https://github.com/kiritoxkiriko/bbsdemo.git
+   cd bbsdemo
+   git checkout package_war
    ```
 
 3. mysql执行项目根目录下的 bbs.sql 脚本创建数据库
@@ -57,3 +59,4 @@ mysql用了这里 https://github.com/abel533/Mapper 的一个通用mapper，省�
 
 还可以使用release中我打包好的war包, 用解压软件打开war包, 修改/WEB-INF/classes/com/application.yml 文件即可
 
+如想在开发环境进行调试，checkout到master分支即可
