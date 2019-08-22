@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>bbsdemo</name>
     <description>Demo project for Spring Boot</description>
+<!--    <packaging>war</packaging>-->
 
     <properties>
         <java.version>1.8</java.version>
@@ -29,7 +30,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+<!--            打包war时排除自带的tomcat-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+
         </dependency>
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
