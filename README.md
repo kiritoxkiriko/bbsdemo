@@ -27,6 +27,8 @@ mysql用了这里 https://github.com/abel533/Mapper 的一个通用mapper，省�
 
    ```shell
    git clone https://github.com/kiritoxkiriko/bbsdemo.git
+   cd bbsdemo
+   git checkout package_war
    ```
 
 3. mysql执行项目根目录下的 bbs.sql 脚本创建数据库
