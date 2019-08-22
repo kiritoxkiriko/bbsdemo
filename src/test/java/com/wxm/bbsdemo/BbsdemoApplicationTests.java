@@ -23,12 +23,12 @@ public class BbsdemoApplicationTests {
     //UserExample userExample;
     @Test
     public void contextLoads() {
-        mailService.send("645466558@qq.com","123","123145");
-            //long a=1;
-            //userExample.or().andUseridEqualTo(a);
-            //List<User> user= userService;
-
-            //System.out.println(user);
+//        mailService.send("645466558@qq.com","123","123145");
+//            //long a=1;
+//            //userExample.or().andUseridEqualTo(a);
+//            //List<User> user= userService;
+//
+//            //System.out.println(user);
 
 
     }
