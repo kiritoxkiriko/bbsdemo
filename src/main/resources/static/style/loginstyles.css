@@ -1,0 +1,323 @@
+.mode_dark .lay_wrap .lay_main {
+    color: #fff;
+}
+.warp{
+    color: #4b4a4a;
+    height: 100%;
+    position: relative;
+    min-height: 600px;
+    z-index: 2;
+}
+.lay_wrap {
+    color: #4b4a4a;
+    height: 100%;
+    position: relative;
+    min-height: 600px;
+    z-index: 2;
+}
+.lay_wrap .lay_main {
+    color: #4b4a4a;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+.lay_wrap .lay_main .login_wrap {
+    width: 265px;
+    position: absolute;
+    right: 0;
+}
+.lay_wrap_v2 .lay_main .login_wrap {
+    overflow: hidden;
+    width: 418px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 2px 2px rgba(0,0,0,.1);
+    top: 100px;
+    zoom: 1;
+}
+.lay_wrap_v2 .lay_inner {
+    width: 880px;
+}
+.lay_wrap .lay_inner {
+    width: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+.clearfix:after {
+    content: ".";
+    clear: both;
+    line-height: 0;
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.title {
+    text-align: center;
+}
+.title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 16px;
+}
+.login, .login_no_qlogin {
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 2px solid #eee;
+    position: relative;
+    height: 100%;
+}
+.web_qr_login {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+.web_qr_login .web_qr_login_show {
+     top: 0;
+     height: 100%;
+ }
+.web_login {
+    position: relative;
+    height: 100%;
+    top: 50%;
+    margin-top: -150px;
+}
+.web_login .tips {
+    position: relative;
+    margin: 0 auto 36px;
+    z-index: 11;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+}
+.web_login .login_form {
+    width: 272px;
+    margin: 0 auto;
+}
+.web_login .uinArea {
+    height: 55px;
+    position: relative;
+    z-index: 10;
+}
+
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 400 11px system-ui;
+}
+input, textarea, select, button, meter, progress {
+    writing-mode: horizontal-tb !important;
+}
+.web_login .uin_del {
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    display: none;
+}
+.web_login .input_tips, .web_login .input_tips_focus {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #aaa;
+    cursor: text;
+}
+.web_login .inputOuter {
+    width: 272px;
+    height: 30px;
+}
+.web_login .inputstyle {
+    width: 258px;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    height: 25px;
+    padding: 10px 0 10px 10px;
+    line-height: 18px;
+    border: none;
+    background: 0 0;
+    color: #333;
+    font-family: Verdana,Tahoma,Arial;
+    font-size: 16px;
+}
+
+.web_login .pwdArea {
+    height: 55px;
+    position: relative;
+    z-index: 3;
+}
+.web_login .inputOuter {
+    width: 272px;
+    height: 30px;
+}
+.web_login .verificArea {
+    height: 30px;
+    position: relative;
+    z-index: 3;
+}
+.web_login .verifimg {
+    width: 272px;
+    height: 42px;
+}
+.web_login .submit {
+    position: relative;
+    height: 40px;
+    background-color:rgb(103, 136, 12);
+}
+.web_login .remember {
+    position: relative;
+    height: 40px;
+    background-color: #ffffff;
+}
+.web_login .login_button {
+    position: absolute;
+    left: 0;
+    outline: 0;
+    width: 100%;
+}
+.web_login .login_button .btn {
+    width: 100%;
+    height: 40px;
+    line-height: 35px;
+    border: none;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: "Microsoft Yahei","微软雅黑",SimHei,"黑体","Hiragino Sans GB",STHeiTi,sans-serif;
+    color: rgb(255, 255, 255);
+    background: 0 0;
+    cursor: pointer;
+}
+.web_login .login_form {
+    width: 272px;
+    margin: 0 auto;
+}
+.lay_wrap .lay_inner {
+    width: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+.login-table{
+  text-align: center;
+}
+img{
+    border-width: 0;
+    border-style: none;
+}
+.lay_background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.lay_background .lay_background_img {
+    transition: opacity .8s ease;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: -1;
+}
+
+.lay_background .lay_background_img_fade_out {
+    opacity: 1;
+}
+
+
+.bottom {
+    height: 16px;
+    margin-bottom: 8px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    font-size: 12px;
+}
+.bottom, .qlogin .nextPage {
+    right: 10px;
+}
+.bottom .link {
+    color: #666;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.bottom .dotted {
+    color: #bfbfbf;
+    margin: 0 5px;
+}
+.widget-container .si-remember-password {
+    display: inline-block;
+    position: relative;
+    margin: 18px 0 16px 0px;
+}
+.form-choice {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    width: 16px;
+    height: 16px;
+}
+.widget-container .si-remember-password label[for=remember-me] {
+    display: inline;
+    color: inherit;
+    line-height: inherit;
+    padding-top: 1px;
+    color: #000000;
+}
+.form-choice-checkbox+.form-label .form-choice-indicator {
+    border-radius: 3px;
+}
+.form-choice ~ .form-label .form-choice-indicator {
+    position: absolute;
+    top: 3px;
+    left: 0;
+}
+.form-choice-indicator {
+    box-sizing: content-box;
+}
+.form-choice-indicator {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    color:rgb(0, 0, 0);
+    border: 1px solid #000000;
+    background: rgb(255, 255, 255);
+}
+#anony-reg-new .login .item-action {
+    font-size: 12px;
+    margin-top: 8px;
+    overflow: hidden;
+    color: #666;
+}

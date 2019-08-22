@@ -1,0 +1,107 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="${user.nickname}+'的主页'"></title>
+    <link rel="stylesheet" type="text/css" href="/style/style_5_common.css">
+    <link rel="stylesheet" type="text/css" href="/style/style_5_home_space.css">
+    <link rel="stylesheet" type="text/css" href="/style/style_5_css_space.css">
+    <link id="style_css" rel="stylesheet" type="text/css" href="/style/style.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/js.cookie-2.2.0.min.js"></script>
+</head>
+
+<body>
+<form id="hidden-form" action="" method="post" url="">
+    <input id="login-userid" type="hidden" th:value="${loginUserId}">
+    <input id="token" name="token" type="hidden" value="">
+</form>
+<div id="toptb" class="cl" style="background:rgb(103, 136, 12)">
+    <div class="toptb" >
+        <div class="z">
+            <a href="javascript:void(0);"  class="xw1" style="color:rgb(255, 255, 255)" th:if="${isLogin}" th:text="${user.username}"></a>
+            <a href="/" id="navs" class="showmenu" style="color:rgb(255, 255, 255)">返回首页</a>
+        </div>
+    </div>
+</div>
+   
+<div id="ct" class="wp w cl" style="width:1200px;height: 800px">
+    <div id="diypage" class="area" style="width:1200px;height: 800px">
+        <div id="frame1" class="frame cl" noedit="1" style="width:1200px;height: 800px">
+            <div id="frame1_left" class="z column" style=" width:400px; height: 800px">
+                <div id="profile" class="block move-span" style="height: 300px">
+                    <div class="blocktitle title" style="background:rgba(170, 223, 26, 0.589)">
+                        <span>
+                            <a style="color:rgb(255, 255, 255)">头像</a>
+                        </span>
+                    </div>
+                    <div id="profile_content" class="dxb_bc">
+                        <div>
+                            <div class="hm">
+                                <p>
+                                    <a> 
+                                        <img src="https://face.feng.com/data/avatar/018/10/91/81_avatar_middle.jpg">
+                                     </a>
+                                    </p>
+                                    <h2 class="mbn">
+                                        <a href="javascript:void(0);" th:text="${user.nickname}"></a>
+                                    </h2>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="statistic" class="block move-span" style="height: 300px">
+                            <div class="blocktitle title"style="background:rgba(170, 223, 26, 0.589)">
+                                <span>统计信息</span>
+                            </div>
+                            <div id="statistic_content" class="dxb_bc">
+                                <div>
+                                    <ul class="xl xl2 cl">
+                                        <li>积分: <a>--</a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="frame1_center" style="width:800px; margin:0 2px;" class="z column">
+                    <div id="personalinfo" class="block move-span" style="height: 200px">
+                        <div class="blocktitle title"style="background:rgba(170, 223, 26, 0.589)">
+                            <span>
+                                <a >个人资料</a>
+                            </span>
+                        </div>
+                        <div id="personalinfo_content" class="dxb_bc">
+                            <ul id="pprl" class="mbm pbm bbda cl">
+                                <li>
+                                    <em>性别</em>
+                                    私密
+                                </li>
+                                <li>
+                                    <em>生日</em>
+                                    私密
+                                </li>
+                                <li>
+                                        <em>生日</em>
+                                        私密
+                                </li>
+                            </ul>
+                            <p style="text-align: right;">
+                                </p>
+                            </div>
+                        </div>
+                        <div id="thread" class="block move-span" style="height: 400px">
+                            <div class="blocktitle title"style="background:rgba(170, 223, 26, 0.589)">
+                                <span><a href="#">帖子</a></span>
+                            </div>
+                            <div id="thread_content" class="dxb_bc">
+                                <p class="emp" style="font-size:20px">
+                                    私密主页，不可查看。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+<script src="/js/user.js"></script>
+    </body>
+    </html>

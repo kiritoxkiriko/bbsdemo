@@ -1,0 +1,92 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>私信</title>
+    <link rel="stylesheet" type="text/css" href="/style/style_5_common.css">
+    <link rel="stylesheet" type="text/css" href="/style/style_5_home_spacecp.css">
+
+    <style type="text/css">
+                .switch_btn{width:46px;margin:10px 0;background:#fcc;font-size:0;margin-left:498px;position:fixed;left:50%;bottom:85px;z-index:9;cursor:pointer;background:#b5b5b9;background:rgba(0,0,0,.3);border-radius:3px;padding:11px 0;-webkit-transition:background linear .28s;-moz-transition:background linear .28s;-ms-transition:background linear .28s;transition:background linear .28s}
+                .switch_btn_d{right:12px;left:auto;}
+                .switch_btn:hover{background:#717171}
+                .switch_btn a{display:inline-block;display:block;height:24px;width:24px;margin:0 auto}
+                .switch_btn a img{width:100%}
+                </style>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/js.cookie-2.2.0.min.js"></script>
+</head>
+
+
+<body id="nv_home" class="pg_spacecp">     
+    <!-- Container -->
+    <div id="wp" class="wp"  style="width:1200px;height: 800px">
+        <div id="pt" class="bbs_info crumbs"  style="background:rgb(103, 136, 12);">
+            <div class="crumbs_inner">
+                <a href="/"  title="首页">论坛首页</a>
+                <a href="javascript:void(0);">&nbsp;</a>
+            </div>
+        </div>
+        <div id="ct" class="ct2_a wp cl"  style="height: 650px;">
+            <div class="mn" style="text-align:center;margin:0 auto">
+                <div class="bm bw0"  >
+                    <input   type="hidden" id="hiddenreceiverid" th:value="${receiver!=null?receiver.userid:''}">
+                    <input  type="hidden" id="hiddenreceivername" th:value="${receiver!=null?receiver.nickname:''}">
+                    <div   class="pm" th:style="'height: 800px;width: 600px; display:'+${receiver==null?'none':'block'}">
+                        <h3 class="flb" style="background:rgba(170, 223, 26, 0.589)">
+                            <em id="userspan" >与
+                                <a  id="receiver-name" ></a>
+                                聊天中
+                            </em>
+                            <em id="noticespan" style="display: none">
+                                系统公告
+                            </em>
+                        </h3>
+                        <div class="c" style="height:600px;width:600px;">
+                            <ul class="pmb" id="msglist" fwin="showMsgBox" style="height:400px;width:500px;">
+
+                            </ul>
+                            <div class="pmfm" style="height:200px;width:500px;">
+                                <form id="pmform" name="pmform" style="height:200px;width:500px;">
+                                    <div class="tedt" style="height:120px;width:500px;">
+                                        <div class="area">
+                                            <input id="receiverid" name="receiverid" type="hidden" value="">
+                                            <textarea rows="3" cols="80" name="content" class="pt" id="pmmessage" style="height:119px;width:500px;"></textarea>
+        
+                                        </div>
+                                    </div>
+                                    <div class="mtn pns cl">
+                                        <button type="submit" class="pn pnc" id="pmsubmit_btn" fwin="showMsgBox">
+                                            <strong>发送</strong>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="appl" style="height:400px;width:200px">
+                <div class="tbn">
+                <h2 class="mt bbda">消息</h2>
+                <ul>
+                    <li th:if="${senderSpans!=null&&!senderSpans.isEmpty()}" th:each="senderSpan:${senderSpans}">
+                        <a class="sender" th:unless="${senderSpan.sender.userid.equals(0)}" th:userid="${senderSpan.sender.userid}"  th:username="${senderSpan.sender.nickname}"th:text="${senderSpan.sender.nickname}+'的消息'+(${senderSpan.unreadNum}==0?'':('('+${senderSpan.unreadNum}+')'))" href="javascript:void(0)"></a>
+                        <a class="sender" th:if="${senderSpan.sender.userid.equals(0)}" th:userid="${senderSpan.sender.userid}"  href="javascript:void(0)">系统公告</a>
+                    </li>
+                    <li th:unless="${senderSpans!=null&&!senderSpans.isEmpty()}">
+                        <a href="javascript:void(0) ">无消息</a>
+                    </li>
+                    </ul>
+                    </div>
+                    <div class="drag">
+                        <div id="diy2" class="area"></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/message.js"></script>
+    </body>
+    </html>
+
+

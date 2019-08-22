@@ -1,0 +1,15 @@
+.header {
+    margin-bottom: 40px;
+}
+.wrapper, .header, .footer {
+    width: 950px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    zoom: 1;
+}
+.single-nav {
+    padding-top: 30px;
+}
+
+
+

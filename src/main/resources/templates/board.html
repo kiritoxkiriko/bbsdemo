@@ -1,0 +1,413 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+
+    <title th:text="${board.boardname}"></title>
+
+    <link th:href="@{~/style/style_5_common.css}" href="style/style_5_common.css" rel="stylesheet" type="text/css">
+    <link th:href="@{~/style/style_5_forum_forumdisplay.css}" href="style/style_5_forum_forumdisplay.css"
+          rel="stylesheet" type="text/css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/js.cookie-2.2.0.min.js"></script>
+    <!--<script th:href="@{~/style/indexstyle.css}" src="/bbs_v4/js/common.js" type="text/javascript"></script>
+-->
+</head>
+
+
+<body id="nv_forum" class="pg_forumdisplay">
+
+<style>
+    .switch_btn {
+        width: 46px;
+        margin: 10px 0;
+        background: #fcc;
+        font-size: 0;
+        margin-left: 498px;
+        position: fixed;
+        left: 50%;
+        bottom: 85px;
+        z-index: 9;
+        cursor: pointer;
+        background: #b5b5b9;
+        background: rgba(0, 0, 0, .3);
+        border-radius: 3px;
+        padding: 11px 0;
+        -webkit-transition: background linear .28s;
+        -moz-transition: background linear .28s;
+        -ms-transition: background linear .28s;
+        transition: background linear .28s
+    }
+
+    .switch_btn_d {
+        right: 12px;
+        left: auto;
+    }
+
+    .switch_btn:hover {
+        background: #717171
+    }
+
+    .switch_btn a {
+        display: inline-block;
+        display: block;
+        height: 24px;
+        width: 24px;
+        margin: 0 auto
+    }
+
+    .switch_btn a img {
+        width: 100%
+    }
+
+    .delete-post a:hover{
+        color: red;
+    }
+    .delete-post a{
+        font-size: 12px;
+        color: rgba(0,0,0,0.1);
+    }
+</style>
+
+<!-- <div id="append_parent"> -->
+<div id="append_parent">
+    <div id="typeid_fast_ctrl_menu" class="sltm" initialized="true"
+         style="width: 80px; position: absolute; z-index: 301; left: 370px; top: 3434px; display: none;">
+        <ul>
+            <li class="current">选择主题分类</li>
+            <li>讨论</li>
+            <li>新闻</li>
+            <li>分享</li>
+            <li>求助</li>
+            <li>原创</li>
+            <li>转载</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Quick Services -->
+<div class="wrap quick_services">
+    <ul class="user_links" style="background:rgb(87, 116, 10)">
+        <li class="my has-login" style="display:none;">
+            <a  id="my-space" href="javascript:void(0)">
+                个人中心
+            </a>
+        </li>
+        <li class="my has-login" style="display:none;">
+            <a id="logout-btn" href="javascript:void(0)">
+                注销
+            </a>
+        </li>
+        <li class="my has-login" style="display:none;">
+            <a id="my-msg" href="javascript:void(0)">
+                消息<span></span>
+            </a>
+        </li>
+        <li class="my not-login">
+            <a href="/regist">
+                注册
+            </a>
+        </li>
+        <li class="my not-login">
+            <a href="/login">
+                登录
+            </a>
+        </li>
+        <li><a th:href="@{~/}"><i class="subject" style="background:rgb(87, 116, 10)"><b></b></i>主页</a></li>
+        <li><a href="javascript:void(0);"><i class="subject" style="background:rgb(87, 116, 10)"><b></b></i>帖子</a></li>
+        <li><a href="javascript:void(0);"><i class="reply" style="background:rgb(87, 116, 10)"><b></b></i>回帖</a></li>
+        <li><a href="javascript:void(0);"><i class="newscommon" style="background:rgb(87, 116, 10)"><b></b></i>评论</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Search box -->
+<style type="text/css">
+    #bdcs {
+        width: 366px;
+        height: 30px;
+    }
+
+    .bdcs-container .bdcs-search-form-input {
+        width: 310px;
+        display: inline-block;
+        background: #efefef;
+        border: 1px solid #efefef;
+        border-top-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .09);
+        padding: 0 26px;
+        height: 28px;
+        vertical-align: top;
+    }
+
+    .google_sch {
+        position: relative;
+        height: 30px;
+    }
+
+    .google_sch .zoom {
+        left: 37px;
+        z-index: 5;
+        top: 1px;
+    }
+
+    .bdcs-clearfix {
+        height: 30px;
+    }
+
+    .bdcs-container {
+        height: 30px;
+    }
+
+    .bdcs-container .bdcs-search-form-submit, .bdcs-container .bdcs-hot {
+        display: none;
+    }
+
+    .bdcs-container .bdcs-search-form-input:focus {
+        border-color: #1AA0CA;
+    }
+</style>
+<div class="wrap search_box" id="search_box" style="background:rgb(103, 136, 12)">
+    <form method="get" id="search_form" autocomplete="off" action="/search" target="_blank">
+        <div class="field_panel curr_owner">
+            <div class="type_panel"><span class="type">
+                <em class="google" style="background:rgb(103, 136, 12)" href="javascript:void(0);">考研信息</em>
+                <em id="search_btn" class="owner" style="background:rgb(255, 255, 255)">搜索</em>
+            </span>
+            </div>
+            <div class="sch_panel owner_sch">
+
+                <ul>
+                    <li class="txt_field">
+                        <span class="txt " style="padding-right: 2px; padding: 2px;width: 300px;">
+                            <input type="text" name="keyword" id="scbar_txt" placeholder="在这里搜索" autocomplete="off" class="ac_input input_change" style="height:26px;width: 302px;">
+                            <i class="clear hide"></i>
+                        </span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<!-- Container -->
+<div id="wp" class="wp">
+    <!-- BBS info -->
+    <div class="wrap bbs_info" style="background:rgb(103, 136, 12)">
+        <ul>
+            <li><i class="chart" style="background:rgba(255, 94, 0, 0)"></i></li>
+            <li><span>帖子</span><em th:text="${board.postNum}"></em></li>
+            <li class="line" style="color:rgb(255, 255, 255)"><span>|</span></li>
+            <li><span>回帖</span><em th:text="${board.postreplyNum}"></em></li>
+            <li class="line" style="color:rgb(255, 255, 255)"><span>|</span></li>
+        </ul>
+
+    </div>
+
+    <div class="boardnav">
+        <div id="ct" class="wp cl re_ct">
+            <div class="mn">
+                <div class="bm bml pbn">
+                    <div class="bm_h cl" style="background:rgba(170, 223, 26, 0.589)">
+                        <h2>
+                            <span th:text="${board.boardname}"></span>
+                        </h2>
+                    </div>
+                    <div class="bm_c cl pbn">
+                        <div class="forum_info">
+                            <a href="" class="icon">
+                                <img src="/pic/logo.png" height="72" width="72"></a>
+                            <div class="forum_props">
+                                <div class="desc" th:text="${board.info}"></div>
+                            </div>
+                        </div>
+                        <div id="forum_rules_643" class="forum_rules">
+                            <div class="s_title">
+                                <h3>
+                                    <i class="sound"></i>
+                                    版块公告
+                                </h3>
+                                <i class="f_l"></i>
+                                <i class="f_r"></i>
+                            </div>
+                            <div class="inner" style="text-align:center" th:text="${board.notice}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 分页 -->
+                <div id="pgt1" class="bm bw0 pgs cl">
+                    <div class="pager pager_top">
+                    </div>
+                </div>
+                <div class="ttp_panel" style="background:rgba(170, 223, 26, 0.589)">
+                    <ul id="thread_types" class="ttp bm cl">
+                        <li id="ttp_all" style="background:rgba(170, 223, 26, 0.589)">
+                            <a href="" style="background:rgba(113, 151, 8, 0.589)">
+                                <span style="background:rgba(171, 223, 26, 0) ">全部</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id="threadlist" class="tl bm bmw thread_list" style="position: relative;">
+                    <div class="bm_c">
+                        <div id="forumnew" style="display:none"></div>
+                        <table summary="forum_643" cellspacing="0" cellpadding="0" id="threadlisttableid">
+                                <!-- 空贴模版 -->
+                                <tbody id="separatorline" class="emptb">
+                                <tr>
+                                    <td class="icn"></td>
+                                    <th></th>
+                                    <td class="by"></td>
+                                    <td class="num"></td>
+                                    <td class="by"></td>
+                                </tr>
+                                </tbody>
+
+
+                                <tbody>
+                                <tr th:each="postSpan:${postSpanPage.pageItems}">
+                                    <td class="icn">
+                                        <a >
+                                            <img th:src="@{~/pic/folder_new.png}">
+                                        </a>
+                                    </td>
+                                    <th class="new">
+                                        <em>[<a th:text="${postSpan.posttheme.themename}"></a>]</em>
+                                        <a class="s xst" th:href="@{~/post/{postId}(postId=${postSpan.post.postid})}" style="font-size: 14px;" th:text="${postSpan.post.name}"></a>
+                                    </th>
+                                    <td class="delete-post" style="width: 10px;font-size: 14px;text-align:right;color:red"><a href="javascript:void(0)" th:boardid="${board.boardid}" th:postid="${postSpan.post.postid}">删除</a></td>
+                                    <td class="by" th:if="${postSpan.post!=null}">
+                                        <cite>
+                                            <a style="font-size: 12px" th:href="@{~/user/{userid}(userid=${postSpan.post.postbyId})}" th:text="${postSpan.postUser.nickname}"></a>
+                                        </cite>
+                                        <em>
+                                     <span class="xi1">
+                                     <span title="时间" style="font-size: 12px" th:text="${postSpan.post.postdate}"></span>
+                                    </span>
+                                        </em>
+                                    </td>
+                                    <td class="num" style="font-size: 12px">
+                                        <a th:href="@{~/post/{pid}(pid=${postSpan.post.postid})}" class="xi2" th:text="${postSpan.post.postreplyNum}"></a>
+                                        <em th:text="${postSpan.post.viewcount}"></em>
+                                    </td>
+                                    <td class="by" th:if="${postSpan.latestPostReply!=null}">
+                                        <cite>
+                                            <a th:href="@{~/user/{userid}(userid=${postSpan.latestPostReply.replybyId})}" style="font-size: 12px" th:text="${postSpan.latestPostUser.nickname}"></a></cite>
+                                        <em>
+                                            <a th:href="@{~/post/{postid}(postid=${postSpan.latestPostReply.postid})}"><span title="时间" style="font-size: 12px" th:text="${postSpan.latestPostReply.replydate}">
+                                            </span>
+                                            </a>
+                                        </em>
+                                    </td>
+                                    <td class="by" th:unless="${postSpan.latestPostReply!=null}">
+                                        <cite>
+                                            <a href="" style="font-size: 12px" ></a></cite>
+                                        <em>
+                                            <a href=""><span title="时间" style="font-size: 12px" >
+                                            </span>
+                                            </a>
+                                        </em>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                    </div>
+                </div>
+                <div id="pgbtn" class="pgbtn" th:if="${postSpanPage.pageCount>1}">
+                    <a  th:if="${postSpanPage.currentPage<postSpanPage.pageCount} " th:href="${'?page='+(postSpanPage.currentPage+1)}" class="fast_next">
+                        <span>下一页<i></i></span>
+                    </a>
+                </div>
+                <div id="pgt" class="bm bw0 pgs cl">
+                    <div class="pager pager_top">
+                        <div class="page_list">
+                            <div class="pg">
+                                <a th:if="${postSpanPage.pageCount>8} " href="">1</a>
+                                <a th:if="${(postSpanPage.currentPage)-3>0}" th:text="${(postSpanPage.currentPage)-3}" th:href="${'?page='+(postSpanPage.currentPage+(-3))}"></a>
+                                <a th:if="${(postSpanPage.currentPage)-2>0}" th:text="${(postSpanPage.currentPage)-2}" th:href="${'?page='+(postSpanPage.currentPage+(-2))}"></a>
+                                <a th:if="${(postSpanPage.currentPage)-1>0}" th:text="${(postSpanPage.currentPage)-1}" th:href="${'?page='+(postSpanPage.currentPage+(-1))}"></a>
+                                <strong th:text="${postSpanPage.currentPage}"></strong>
+                                <a th:if="${(postSpanPage.currentPage)+1<postSpanPage.pageCount}" th:text="${(postSpanPage.currentPage)+1}" th:href="${'?page='+(postSpanPage.currentPage+1)}"></a>
+                                <a th:if="${(postSpanPage.currentPage)+2<postSpanPage.pageCount}" th:text="${(postSpanPage.currentPage)+2}" th:href="${'?page='+(postSpanPage.currentPage+2)}"></a>
+                                <a th:if="${(postSpanPage.currentPage)+3<postSpanPage.pageCount}" th:text="${(postSpanPage.currentPage)+3}" th:href="${'?page='+(postSpanPage.currentPage+3)}"></a>
+                                <a class="last" th:if="${postSpanPage.pageCount>1&&postSpanPage.currentPage<postSpanPage.pageCount} " th:text="${postSpanPage.pageCount} " th:href="${'?page='+postSpanPage.pageCount}"></a>
+                                <a th:if="${postSpanPage.currentPage<postSpanPage.pageCount} " th:href="${'?page='+(postSpanPage.currentPage+1)}"
+                                   class="nxt" style="    background-image: url(/pic/bg_hor.png);
+    background-repeat: no-repeat;
+    background-position: -120px -388px;">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="f_pst" class="bm" style="position: relative">
+                    <div id="fastpost-cover" style="position: absolute;height: 100%;width: 100%;background-color: rgba(0,0,0,0.3) ;z-index: 99;text-align: center">
+                        <div style="text-align: center;margin-top: 50px;font-size: 14px;font-weight: bold"> 您需要<a th:href="@{~/login}" style="color:red;text-decoration:underline;margin: 0 2px">登录</a>才能发贴</div>
+                    </div>
+                    <div class="bm_h" style="background:rgba(170, 223, 26, 0.589)">
+                        <h2>快速发帖</h2>
+                    </div>
+                    <div class="bm_c" >
+
+                        <form  id="postform">
+                            <input type="hidden" name='boardid' th:value="${board.boardid}">
+                            <div id="fastpostreturn" style="margin:-5px 0 5px"></div>
+                            <div class="pbt cl">
+                                <div class="ftid">
+                                    <!-- <a href="javascript:;" id="typeid_fast_ctrl" style="width:80px" tabindex="1">选择主题分类</a> -->
+                                </div>
+                                <input type="text" id="name" name="name" class="px" value=""
+                                       onkeyup="strLenCalc(this, 'checklen', 120);" tabindex="11" style=" height: 23px;"
+                                       placeholder="帖子标题">
+                            </div>
+
+                            <div class="cl">
+                                <div class="hasfsl" id="fastposteditor">
+                                    <div class="tedt">
+                                        <div class="bar">
+                                            <script src="static/js/seditor.js?g5Q" type="text/javascript"></script>
+                                            <div class="fpd">
+                                                <script type="text/javascript"
+                                                        reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
+                                            </div>
+                                        </div>
+                                        <div class="area">
+                                            <textarea rows="6" cols="80" name="content" style="width: 100%"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="ptm pnpost">
+                                <button type="submit"
+                                        tabindex="13" class="pn pnc">
+                                    <strong style="background:rgb(103, 136, 12)">发表帖子</strong>
+                                </button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Fengbuy Rec Products -->
+<div class="store_products_wrap">
+    <div id="store_products" class="hide"></div>
+</div>
+
+
+<!-- Quick Links -->
+<script src="/js/board.js"></script>
+</body>
+</html>

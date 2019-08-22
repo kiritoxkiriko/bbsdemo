@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/loginstyles.css" rel="stylesheet">
+    <link href="style/common.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/js.cookie-2.2.0.min.js"></script>
+
+</head>
+
+<body class="mode_dark mode_dark_footer">
+<div class="lay_wrap lay_wrap_v2" id="lay">
+    <div class="lay_main clearfix" style="z-index:999">
+        <div class="lay_inner">
+            <div class="login_head">
+                <h1><i class="ui_icon "></i></h1>
+            </div>
+
+            <div class="login_wrap" id="login_div" style="height:316px;box-shadow:none;background:transparent">
+
+                <div class="login" id="login" style="height: 312px;">
+                    <div class="web_qr_login" id="web_qr_login" style="display: block;">
+                        <div class="web_qr_login_show" id="web_qr_login_show">
+                            <div class="web_login" id="web_login">
+                                <div class="tips" id="tips">
+                                    <div class="title" id="title_2">登录</div>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="login_form">
+                                    <form id="loginform" style="margin:0px;">
+                                        <div class="uinArea" id="uinArea">
+                                            <div class="inputOuter">
+                                                <input id="username" type="text" class="inputstyle" name="username"  placeholder="账号">
+                                            </div>
+                                            <div id="message1" class="message">
+                                            </div>
+                                        </div>
+
+                                        <div class="pwdArea" id="pwdArea">
+                                            <div class="inputOuter">
+                                                <input id="password" type="password" class="inputstyle password" name="password"  maxlength="16" placeholder="密码">
+                                            </div>
+                                            <div id="message2" class="message">
+
+                                            </div>
+                                        </div>
+
+                                            <!-- <div class="lock_tips" id="caps_lock_tips" style="display:none;">
+                                                <span class="lock_tips_row"></span>
+                                                <span>大写锁定已打开</span>
+                                            </div> -->
+                                        <!-- <div class="si-remember-password remember ">
+                                            <input type="checkbox" id="remember-me" class="form-choice form-choice-checkbox">
+                                            <label id="remember-me-label" class="form-label" for="remember-me">
+                                                <span class="form-choice-indicator" ></span>记住我的账号密码
+                                            </label>
+                                        </div> -->
+                                       
+                                        <div class="submit">
+                                            <a class="login_button" hidefocus="true">
+                                                <input id="login-btn" type="submit" tabindex="6" value="登 录" class="btn"  >
+                                            </a>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <!-- <div class="item-action">
+                                        <label for="form_remember">
+                                            <input name="remember" type="checkbox" id="form_remember" tabindex="4">记住我
+                                        </label>
+                                    </div> -->
+                                <div class="bottom" id="bottom_web" style="display: block;">
+                                    <a href="forgetpas.html" class="link" id="forgetpwd" target="_blank">忘了密码？</a>
+                                    <span class="dotted">|</span>
+                                    <a href="/regist" class="link" target="_blank">注册新帐号</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>

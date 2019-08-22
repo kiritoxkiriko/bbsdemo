@@ -1,0 +1,203 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title> 考研信息分享主站 </title>
+    <link th:href="@{~/style/style_5_common.css}" href="style/style_5_common.css" rel="stylesheet" type="text/css">
+    <link th:href="@{~/style/style_5_forum_index.css}" href="style/style_5_forum_index.css" rel="stylesheet" type="text/css">
+    <link th:href="@{~/style/indexstyle.css}" herf="style/indexstyle.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/js.cookie-2.2.0.min.js"></script>
+    <!-- Search box -->
+    <style type="text/css">
+        #bdcs {
+            width: 366px;
+            height: 30px;
+        }
+
+        .bdcs-container .bdcs-search-form-input {
+            width: 310px;
+            display: inline-block;
+            background: #efefef;
+            border: 1px solid #efefef;
+            border-top-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .09);
+            padding: 0 26px;
+            height: 28px;
+            vertical-align: top;
+        }
+
+        .google_sch {
+            position: relative;
+            height: 30px;
+        }
+
+        .google_sch .zoom {
+            left: 37px;
+            z-index: 5;
+            top: 1px;
+        }
+
+        .bdcs-clearfix {
+            height: 30px;
+        }
+
+        .bdcs-container {
+            height: 30px;
+        }
+
+        .bdcs-container .bdcs-search-form-submit, .bdcs-container .bdcs-hot {
+            display: none;
+        }
+
+        .bdcs-container .bdcs-search-form-input:focus {
+            border-color: #1AA0CA;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Quick Services -->
+<div class="wrap quick_services">
+    <ul class="user_links" style="background: rgb(87, 116, 10);">
+        <li class="my has-login" style="display:none;">
+            <a id="my-space" href="javascript:void(0)">
+                个人中心
+            </a>
+        </li>
+        <li class="my has-login" style="display:none;">
+            <a id="logout-btn" href="javascript:void(0)">
+                注销
+            </a>
+        </li>
+        <li class="my has-login" style="display:none;">
+            <a id="my-msg" href="javascript:void(0)">
+                消息<span></span>
+            </a>
+        </li>
+        <li class="my not-login">
+            <a href="/regist">
+                注册
+            </a>
+        </li>
+        <li class="my not-login">
+            <a href="/login">
+                登录
+            </a>
+        </li>
+        <li><a th:href="@{~/}"><i class="subject" style="    background: rgb(87, 116, 10);"><b></b></i>主页</a></li>
+        <li><a href="javascript:void(0);"><i class="subject" style="    background: rgb(87, 116, 10);"><b></b></i>帖子</a></li>
+        <li><a href="javascript:void(0);"><i class="reply" style="    background: rgb(87, 116, 10);"><b></b></i>回帖</a></li>
+        <li><a href="javascript:void(0);"><i class="newscommon" style="    background: rgb(87, 116, 10);"><b></b></i>评论</a>
+        </li>
+    </ul>
+</div>
+
+<div class="wrap search_box" id="search_box" style="background:rgb(103, 136, 12)">
+    <form method="get" id="search_form" autocomplete="off" action="/search" target="_blank">
+    <div class="field_panel curr_owner">
+        <div class="type_panel"><span class="type">
+                <em class="google" style="background:rgb(103, 136, 12)" href="javascript:void(0);">考研信息</em>
+                <em id="search_btn" class="owner" style="background:rgb(255, 255, 255)">搜索</em>
+            </span>
+        </div>
+        <div class="sch_panel owner_sch">
+
+                <ul>
+                    <li class="txt_field">
+                        <span class="txt " style="padding-right: 2px; padding: 2px;width: 300px;">
+                            <input type="text" name="keyword" id="scbar_txt" placeholder="在这里搜索" autocomplete="off" class="ac_input input_change" style="height:26px;width: 302px;">
+                            <i class="clear hide"></i>
+                        </span>
+                    </li>
+                </ul>
+
+        </div>
+    </div>
+    </form>
+
+</div>
+
+<!-- Container -->
+<div class="wp" id="wp">
+    <!-- BBS info -->
+    <div class="wrap bbs_info" style="background:rgb(103, 136, 12)">
+        <ul>
+            <li><i class="chart" style="background:rgba(255, 94, 0, 0)"></i></li>
+            <li><span>会员</span><em th:text="${totalUser}"></em></li>
+            <li class="line" style="color:rgb(255, 255, 255)"><span>|</span></li>
+            <li><span>帖子</span><em th:text="${totalPost}"></em></li>
+            <li class="line" style="color:rgb(255, 255, 255)"><span>|</span></li>
+            <li><span>回帖</span><em th:text="${totalPostReply}"></em></li>
+            <li class="line" style="color:rgb(255, 255, 255)"><span>|</span></li>
+        </ul>
+
+    </div>
+
+
+    <div id="board_theme_bar_1" class="bm bmw  cl">
+        <div class="bm_h cl" style="background:rgba(170, 223, 26, 0.589)">
+
+            <h2>
+                <a href="javascript:void(0);">XXXXXX</a>
+            </h2>
+        </div>
+    </div>
+    <div class="bm_c" id="board_theme_1">
+        <table cellpadding="0" cellspacing="0" class="fl_tb">
+            <tbody>
+            <tr th:each="boardSpan:${boardSpanList}">
+                <td class="fl_icn" style="width: 72px;">
+                    <a href="javascript:void(0);">
+                        <img align="left" alt=""
+                             src="/pic/logo.png ">
+                    </a>
+                </td>
+                <td style="font-size: 14px">
+                    <h3 >
+                        <a th:href="@{~/board/{boardid}(boardid=${boardSpan.board.boardid})}" style="color: rgb(103, 136, 12);font-size: 14px" th:text="${boardSpan.board.boardname}" ></a>
+                    </h3>
+                    <p class="xg2" th:text="${boardSpan.board.info}"></p>
+                    <p th:if="${boardSpan.moderator!=null}" style="font-size: 14px">版主:
+                        <span class="xi2" style="font-size: 14px">
+                            <a c="1" class="notabs"  th:href="@{/user/{userId}(userId=${boardSpan.moderator.userid})}" th:text="${boardSpan.moderator.nickname}" style="font-size: 14px"></a>
+                        </span>
+                    </p>
+                    <p th:if="${boardSpan.assistantModerators!=null&&!boardSpan.assistantModerators.isEmpty()}" style="font-size: 14px">小版主:
+                        <span class="xi2" th:each="assistantModerator:${boardSpan.assistantModerators}" style="font-size: 14px">
+                            <a c="1" class="notabs" th:href="@{/user/{userId}(userId=${assistantModerator.userid})}" th:text="${assistantModerator.nickname}" style="font-size: 14px"></a>,
+                        </span>
+                    </p>
+                </td>
+                <td class="fl_by">
+                    <div class="last_post">
+                        <a class="user_pic" herf="#">
+                            <i class="mask"></i>
+                        </a>
+                        <span class="reply" th:if="${boardSpan.latestPost}" style="font-size: 14px">
+                            <span style="font-size: 14px">Re:</span>
+                            <a class="xi2" th:href="@{~/post/{postId}(postId=${boardSpan.latestPost.postid})}"  th:text="${boardSpan.latestPost.name}" style="font-size: 14px"></a>
+                        </span>
+                        <cite th:if="${boardSpan.latestPostUser}" style="font-size: 14px">by
+                            <a th:href="@{~/user/{userid}(userid=${boardSpan.latestPostUser.userid})}"  th:text="${boardSpan.latestPostUser.nickname}" style="font-size: 14px"></a>,
+                            <span th:text="${boardSpan.latestPost.postdate}" style="font-size: 14px"></span>
+                        </cite>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="fl_row"></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>
+    
+                                     
+                    
+                         

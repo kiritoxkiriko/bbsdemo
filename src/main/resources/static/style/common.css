@@ -1,0 +1,46 @@
+div {
+    display: block;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Microsoft Yahei";
+    background: rgb(155, 154, 154);
+    line-height: 1.333;
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+}
+body, html {
+    height: 100%;
+}
+
+body {
+    font-family: helvetica,arial,"Microsoft YaHei";
+    font-size: 12px;
+    min-height: 305px;
+    min-width: 370px;
+}
+body, ul {
+    margin: 0;
+}
+body {
+    background-size: cover;
+    background-image: url("../pic/login.jpg");
+    display: block;
+    margin: 8px;
+}
+.message{
+    color: red;
+    width: 100%;
+    height: 14px;
+    font-size: 14px;
+    padding-left: 12px;
+    margin-bottom: 5px;
+}

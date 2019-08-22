@@ -1,0 +1,336 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+    <meta charset="utf-8">
+            <title th:text="${post.name}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/style/style_5_common.css}" href="style/style_5_common.css" >
+    <link rel="stylesheet" type="text/css" th:href="@{~/style/style_5_forum_viewthread.css}" href="style/style_5_forum_viewthread.css">
+    <link id="css_forum_calendar" type="text/css" rel="stylesheet" th:href="@{~/style/style_5_forum_calendar.css}" href="style/style_5_forum_calendar.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/js.cookie-2.2.0.min.js"></script>
+    <style type="text/css">
+        #postlist img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+
+<body id="nv_forum" class="pg_viewthread" style="">
+                <!-- Quick Services -->
+            <div class="wrap quick_services">
+                    <ul class="user_links" style="background:rgb(87, 116, 10)">
+                        <li class="my has-login" style="display:none;">
+                            <a  id="my-space" href="javascript:void(0)">
+                                个人中心
+                            </a>
+                        </li>
+                        <li class="my has-login" style="display:none;">
+                            <a id="logout-btn" href="javascript:void(0)">
+                                注销
+                            </a>
+                        </li>
+                        <li class="my has-login" style="display:none;">
+                            <a id="my-msg" href="javascript:void(0)">
+                                消息<span></span>
+                            </a>
+                        </li>
+                        <li class="my not-login">
+                            <a href="/regist">
+                                注册
+                            </a>
+                        </li>
+                        <li class="my not-login">
+                            <a href="/login">
+                                登录
+                            </a>
+                        </li>
+                        <li><a th:href="@{~/}"><i class="subject" style="    background: rgb(87, 116, 10);"><b></b></i>主页</a></li>
+                        <li><a href="javascript:void(0);"><i class="subject" style="    background: rgb(87, 116, 10);"><b></b></i>帖子</a></li>
+                        <li><a href="javascript:void(0);"><i class="reply" style="    background: rgb(87, 116, 10);"><b></b></i>回帖</a></li>
+                        <li><a href="javascript:void(0);"><i class="newscommon" style="    background: rgb(87, 116, 10);"><b></b></i>评论</a>
+                        </li>
+                    </ul>
+                </div>
+            <!-- Search box -->
+                <div class="wrap search_box" id="search_box" style="background:rgb(103, 136, 12)">
+                    <form method="get" id="search_form" autocomplete="off" action="/search" target="_blank">
+                        <div class="field_panel curr_owner">
+                            <div class="type_panel"><span class="type">
+                <em class="google" style="background:rgb(103, 136, 12)" href="javascript:void(0);">考研信息</em>
+                <em id="search_btn" class="owner" style="background:rgb(255, 255, 255)">搜索</em>
+            </span>
+                            </div>
+                            <div class="sch_panel owner_sch">
+
+                                <ul>
+                                    <li class="txt_field">
+                        <span class="txt " style="padding-right: 2px; padding: 2px;width: 300px;">
+                            <input type="text" name="keyword" id="scbar_txt" placeholder="在这里搜索" autocomplete="off" class="ac_input input_change" style="height:26px;width: 302px;">
+                            <i class="clear hide"></i>
+                        </span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+                </div>
+
+        <!-- Container -->
+        <div id="wp" class="wp">
+             <div id="pt" class="bbs_info crumbs">
+                    <div class="crumbs_inner" style="background:rgb(103, 136, 12)">
+                      <a th:href="@{~/board/{boardId}(boardId=${board.boardid})}" th:text="'回到板块 '+${board.boardname}"></a>
+
+                    </div>
+                </div>
+                <div id="ct" class="wp cl re_ct">      
+                   
+                 <div id="postlist" class="pl bm">
+                    <table cellspacing="0" cellpadding="0" class="pl_tit_table"  style="background:rgba(170, 223, 26, 0.589)">
+                        <tbody>
+                            <tr>
+                                <td class="plc ptm pbn vwthd">
+                                    <div class="pl_tit_panel">
+                                        <h1 class="ts"><span id="thread_subject" th:text="${post.name}"></span></h1>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                <div th:id="'postReply_'+${prSpan.postreply.postreplyId}" th:each="prSpan:${page.pageItems}">
+                    <table id="pid" class="plhin" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr >
+                                <td class="pls" rowspan="2">
+                                    <div class="pls_panel">
+                                        <div id="favatar183416611" class="pls favatar">
+                                            <i class="pl_bg pl_arrow"></i>
+                                            <a name="newpost"></a> 
+                                            <a name="lastpost"></a>
+                                            <div class="pi">
+                                                <div class="authi">
+                                                    <a th:href="@{~/user/{userid}(userid=${prSpan.postUser.userid})}" target="_blank" class="xw1" th:text="${prSpan.postUser.nickname}">用户名</a>
+                                                </div>
+                                            </div>
+                                            <div class="user_props" style="font-size: 14px">
+                                                <div class="avatar" data-cardid="userinfo183416611">
+                                                    <img src="https://face.feng.com/data/avatar/018/10/91/81_avatar_middle.jpg">
+                                                </div>
+                                                <p>级别:
+                                                    <em>
+                                                        <span  style="font-size: 14px" th:text="${prSpan.postUser.level}"></span>
+                                                    </em>
+                                                </p>
+                                                <dl class="pil cl"style="font-size: 14px">
+                                                    <dt>经验</dt>
+                                                    <dd th:text="${prSpan.postUser.point}"> </dd>
+                                                </dl>
+                                            </div>
+                                            <ul class="xl xl2 o cl" style="font-size: 14px">
+                                                <li class="pm2" style="background-image: url(/pic/pmto.png);">
+                                                    <a class="sendmsg_btn" href="javascript:void(0)" th:userid="${prSpan.postUser.userid}" title="发消息">发消息</a>
+                                                </li>                        
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="pl_bg pl_bg_tl">
+                                    <i class="pl_bg"></i>
+                                </td>
+                                            
+                                <td class="plc">
+                                    <div class="pl_bg pl_bg_tc">
+                                        <i class="pl_bg f_l"></i>
+                                        <i class="pl_bg f_r"></i>
+                                    </div>
+                                    <div class="pi" style="font-size: 12px;">
+                                        <strong>
+
+                                            <a>
+                                                <em th:id="${'floor_'+prSpan.postreply.floornum}" th:text="${prSpan.postreply.floornum}"></em>
+                                                楼
+                                            </a>
+                                            <a  class="deletepost" href="javascript:void(0)" th:replyid="${prSpan.postreply.postreplyId}">删除</a>
+                                            <a  class="editreply" href="javascript:void(0)" th:replyid="${prSpan.postreply.postreplyId}">编辑</a>
+                                            <a  class="editreply_fin" href="javascript:void(0)" style="display: none" th:replyid="${prSpan.postreply.postreplyId}">编辑完成</a>
+                                        </strong>
+
+                                        <div class="pti">
+                                            <div class="pdbt"></div>
+                                            <div class="authi">
+                                                <img class="authicn vm" id="authicon183510867" src="/pic/online_member.png">
+                                                <em th:if="${prSpan.modifyUser==null}">发表于
+                                                    <span title="时间" th:text="${prSpan.postreply.replydate}"></span>
+                                                </em>
+                                                <em th:unless="${prSpan.modifyUser==null}">
+                                                    <span title="修改者" th:text="${prSpan.modifyUser.nickname}"></span>
+                                                    修改于
+                                                    <span title="时间" th:text="${prSpan.postreply.modifydate}"></span>
+                                                </em>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pct">
+                                        <div class="pcb">
+                                            <textarea class="editarea" style="font-size: 14px;width: 100%;height: 100%;display: none"></textarea>
+                                            <div class="t_fsz">
+                                                <table cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="t_f" >
+                                                                <p class="replytext" th:text="${prSpan.postreply.content}"></p>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div id="comment_183416611" class="cm"></div>
+                                            <div id="post_rate_div_183416611"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="pl_bg pl_bg_tr"><i class="pl_bg"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="pl_bg pl_bg_ml"><i class="pl_bg"></i></td>
+                                <td class="plc plm">
+                                <div id="p_btn" class="mbw hm cl"></div>
+                                    <div class="a_pb">
+                                        <a href="#" target="_blank">
+                                            <img src="https://yes1.feng.com/view.php?what=zone:102&amp;n=abf80c7f" border="0" alt="">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="pl_bg pl_bg_mr"><i class="pl_bg"></i></td>
+                            </tr>
+                            <tr id="_postposition183416611" class="pl_pos_ad">
+                                <td class="pls"></td>
+                                <td class="pl_bg pl_bg_ml">
+                                    <i class="pl_bg"></i>
+                                </td>
+                                <td class="plc"></td>
+                                <td class="pl_bg pl_bg_mr">
+                                    <i class="pl_bg"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pls"></td>
+                                <td class="pl_bg pl_bg_ml">
+                                    <i class="pl_bg"></i>
+                                </td>
+                                <td class="pl_bg pl_bg_mr">
+                                    <i class="pl_bg"></i>
+                                </td>
+                            </tr>
+                            <tr class="ad">
+                                <td class="pls"></td>
+                                <td class="pl_bg pl_bg_bl">
+                                    <i class="pl_bg"></i>
+                                </td>
+                                <td class="plc">
+                                    <div class="pl_bg pl_bg_bc">
+                                        <i class="pl_bg f_l"></i>
+                                        <i class="pl_bg f_r"></i>
+                                    </div>
+                                </td>
+                                <td class="pl_bg pl_bg_br">
+                                    <i class="pl_bg"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        
+        
+        <form method="post" autocomplete="off" name="modactions" id="modactions">
+            <input type="hidden" name="formhash" value="be4925f8">
+            <input type="hidden" name="optgroup">
+            <input type="hidden" name="operation">
+            <input type="hidden" name="listextra" value="">
+            <input type="hidden" name="page" value="1">
+        </form>
+                    <div id="pgt" class="bm bw0 pgs cl">
+                        <div class="pager pager_top">
+                            <div class="page_list">
+                                <div class="pg">
+                                    <a th:if="${page.pageCount>8} " href="">1</a>
+                                    <a th:if="${(page.currentPage)-3>0}" th:text="${(page.currentPage)-3}" th:href="${'?page='+(page.currentPage+(-3))}"></a>
+                                    <a th:if="${(page.currentPage)-2>0}" th:text="${(page.currentPage)-2}" th:href="${'?page='+(page.currentPage+(-2))}"></a>
+                                    <a th:if="${(page.currentPage)-1>0}" th:text="${(page.currentPage)-1}" th:href="${'?page='+(page.currentPage+(-1))}"></a>
+                                    <strong th:text="${page.currentPage}"></strong>
+                                    <a th:if="${(page.currentPage)+1<page.pageCount}" th:text="${(page.currentPage)+1}" th:href="${'?page='+(page.currentPage+1)}"></a>
+                                    <a th:if="${(page.currentPage)+2<page.pageCount}" th:text="${(page.currentPage)+2}" th:href="${'?page='+(page.currentPage+2)}"></a>
+                                    <a th:if="${(page.currentPage)+3<page.pageCount}" th:text="${(page.currentPage)+3}" th:href="${'?page='+(page.currentPage+3)}"></a>
+                                    <a class="last" th:if="${page.pageCount>1&&page.currentPage<page.pageCount} " th:text="${page.pageCount} " th:href="${'?page='+page.pageCount}"></a>
+                                    <a th:if="${page.currentPage<page.pageCount} " th:href="${'?page='+(page.currentPage+1)}"
+                                       class="nxt" style="    background-image: url(/pic/bg_hor.png);
+    background-repeat: no-repeat;
+    background-position: -120px -388px;">下一页</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+        <div id="f_pst" class="pl fast_reply_panel bm bmw" style="position: relative">
+            <div id="fastpost-cover" style="position: absolute;height: 100%;width: 100%;background-color: rgba(0,0,0,0.3) ;z-index: 99;text-align: center">
+               <div style="text-align: center;margin-top: 50px;font-size: 14px;font-weight: bold"> 您需要<a th:href="@{~/login}" style="color:red;text-decoration:underline;margin: 0 2px">登录</a>才能回帖</div>
+            </div>
+            <form method="post" autocomplete="off" id="fastpostform" action="">
+                <input type="hidden" name="postid" th:value="${post.postid}">
+                <table id="fastpost" cellspacing="0" cellpadding="0" style="position: relative">
+                <tbody>
+                <tr>
+                    <td class="pls">
+                        <div class="favatar favatar2"></div>
+                    </td>
+                    <td class="plc">
+                        <span id="fastpostreturn"></span>
+                        <div id="ajaxwaitid_post" style="color:#D00;width:200px;"></div>
+                        <div class="cl">
+                            <div id="fastsmiliesdiv" class="y">
+                                <div id="fastsmiliesdiv_data">
+                                    <div id="fastsmilies">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hasfsl" id="fastposteditor">
+                                <div class="tedt mtn">
+                                    <div class="area">
+                                        <div class="pt hm">
+                                                <textarea rows="3" cols="80" name="content"
+                                                onkeydown="ctrlEnter(event, 'pmsubmit_btn');" autofocus="" style="height:100%;font-size: 14px"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                    <input type="hidden" name="formhash" value="be4925f8">
+                    <input type="hidden" name="usesig" value="">
+                    <input type="hidden" name="subject" value="  ">
+                    <p class="ptm pnpost">
+                        <button type="submit"  id="submit_btn" class="pn pnc vm"  tabindex="5" style="background:rgba(113, 151, 8, 0.589)">
+                            <strong style="background:rgba(113, 151, 8, 0.589)">发表回复</strong>
+                        </button>
+                    </p>
+                </td>
+            </tr>
+        </tbody></table>
+    </form>
+</div>
+</div>
+</div>
+<script src="/js/post.js"></script>
+</body>
+</html>

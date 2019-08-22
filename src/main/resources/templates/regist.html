@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册账号</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/forget.css" rel="stylesheet">
+    <link href="style/loginstyles.css" rel="stylesheet">
+    <link href="style/common.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/js.cookie-2.2.0.min.js"></script>
+
+</head>
+<body>
+<div class="header">
+    <div id="header">
+         <div class="single-nav">
+             <div>
+               <a>
+                 <!--<img src="/pic/for.jpg">-->
+              </a>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="login_wrap lay_wrap" id="forget_div" style="height:316px;box-shadow:none;background:transparent">
+        <div class="login" id="forget" style="height: 500px;">
+            <div class="web_qr_login" id="web_qr_forget" style="display: block;">
+                <div class="web_qr_login_show" id="web_qr_forget_show">
+                    <div class="web_login" id="web_forget">
+                        <div class="tips" id="tips">
+                            <div class="title" id="title_2">注册账号</div>
+                        </div>
+                        <div class="login_form">
+                            <form id="form"  name="loginform" style="margin:0px;">
+                                <div class="uinArea" id="mailArea">
+                                    <div class="inputOuter">
+                                        <input type="text" class="inputstyle" id="mail" name="mail" value=""  placeholder="注册邮箱">
+                                    </div>
+                                </div>
+
+                                <div class="uinArea" id="usernameArea">
+                                        <div class="inputOuter">
+                                            <input type="text" class="inputstyle" id="username" name="username" value="" placeholder="用户名">
+                                        </div>
+                                </div>
+                                <div class="uinArea" id="nicknameArea">
+                                    <div class="inputOuter">
+                                        <input type="text" class="inputstyle" id="nickname" name="nickname" value="" placeholder="昵称">
+                                    </div>
+                                </div>
+                                <div class="uinArea" id="pwdArea">
+                                    <div class="inputOuter">
+                                        <input type="password" class="inputstyle password" id="password" name="password"  maxlength="16" placeholder="密码">
+                                    </div>
+                                </div>
+                                <div class="vfcArea" id="verifyCodeArea" style="display: none">
+                                        <div class="inputOuter">
+                                            <input type="text" class="inputstyle" id="verifycode" name="verifycode" value="" placeholder="验证码">
+                                        </div>
+                                    </div>
+
+                                <div class="submit">
+                                    <a class="login_button" hidefocus="true">
+                                        <input class="btn" type="submit" tabindex="6" value="注册" id="login_button">
+                                    </a>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="bottom" id="bottom_web" style="display: block;">
+                            <a href="#" class="link" target="_blank">注册</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lay_background" id="lay_bg" >
+</div>
+<script src="/js/regist.js"></script>
+</body>
+</html>
